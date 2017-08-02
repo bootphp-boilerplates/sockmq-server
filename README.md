@@ -1,10 +1,10 @@
 
 
 
-#RabbitMQ
+### RabbitMQ
 
 - [Download/Install RabbitMQ](http://www.rabbitmq.com/download.html)
-- ```$ git clone https://github.com/bootphp/socker.git ```
+- ```$ git clone https://github.com/bootphp/sockmq-server.git ```
 - ```$ cd socker```
 - ``` $ composer update ```
 
