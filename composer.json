@@ -1,0 +1,28 @@
+{
+  "name": "bootphp/socker",
+  "type": "project",
+  "description": "My Rudrax Project",
+  "license": "proprietary",
+  "keywords": [
+  ],
+  "config": {
+    "vendor-dir": "lib"
+  },
+  "autoload": {
+    "psr-4": {
+      "app\\": "app/"
+    }
+  },
+  "authors": [
+    {
+      "name": "LNT",
+      "email": "lalit.tanwar07@gmail.com"
+    }
+  ],
+  "require": {
+    "php-amqplib/php-amqplib": "^2.6",
+    "cboden/ratchet": "0.3.*",
+    "bootphp/loader": "^0.0.0",
+    "bootphpized/wamp-client" : "dev-master"
+  }
+}

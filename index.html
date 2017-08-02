@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>bootphp/socker</title>
+</head>
+<body>
+
+
+<input type="text" value="" placeholder="Type message" onchange="sendMessage(this)">
+
+<div id="messages">
+
+</div>
+
+
+<script>
+    var conn = new WebSocket('ws://localhost:8080');
+    conn.onopen = function(e) {
+        console.log("Connection established!");
+    };
+
+    conn.onmessage = function(e) {
+        var $mesg = document.getElementById("messages");
+        $mesg.innerHTML = e.data + '<br/>' + $mesg.innerHTML;
+        console.log(e.data);
+    };
+
+    function sendMessage(elem){
+        conn.send(elem.value);
+        elem.value = '';
+    }
+</script>
+
+
+</body>
+</html>
