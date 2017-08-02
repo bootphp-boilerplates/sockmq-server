@@ -8,7 +8,7 @@
  */
 namespace app {
 
-    use app\service\Socket;
+    use app\service\Socker;
     use \bootphp\loader\Loader;
 
     include_once "lib/autoload.php";
@@ -16,23 +16,12 @@ namespace app {
 
     class TestSocket extends Loader
     {
-
         public function invoke($options)
         {
-            $client = new \WAMP\WAMPClient('http://localhost:8080');
-            $sessionId = $client->connect();
-
-            //publish an event
-            $payload = array(
-                "me" => "lalit"
-            );
-
-            //$payload can be scalar or array
-            $exclude = [$sessionId]; //no sense in sending the payload to ourselves
-            $eligible = []; //list of other clients ids that are eligible to receive this payload
-            $client->publish('topic', $payload, $exclude, $eligible);
-
-            $client->disconnect();
+            Socker::wamp_send("myuniquetopic", array(
+                "name" => "Lalit",
+                "purpose" => "Testing"
+            ));
         }
 
     }

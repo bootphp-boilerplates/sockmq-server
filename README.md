@@ -21,3 +21,11 @@
 
 
 ### Additional
+
+
+### Test
+Tab 1 : http://local.socker.com/ - open console
+
+Tab 2 : http://local.socker.com/test_socket.php Refresh
+
+Tab 1 : Check Console;

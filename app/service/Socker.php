@@ -20,7 +20,8 @@ class Socker
         //$payload can be scalar or array
         $exclude = [$sessionId]; //no sense in sending the payload to ourselves
         $eligible = []; //list of other clients ids that are eligible to receive this payload
-        $client->publish($topic, $payload, $exclude, $eligible);
+        //$client->publish($topic, $payload, $exclude, $eligible);
+        $client->call($topic, $payload);
 
         $client->disconnect();
     }

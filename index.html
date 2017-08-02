@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>bootphp/socker</title>
+    <script type="application/javascript"
+            src="/src/autobahn.js"></script>
 </head>
 <body>
-
 
 <input type="text" value="" placeholder="Type message" onchange="sendMessage(this)">
 
@@ -13,25 +14,25 @@
 
 </div>
 
-
 <script>
-    var conn = new WebSocket('ws://localhost:8080');
-    conn.onopen = function(e) {
-        console.log("Connection established!");
-    };
-
-    conn.onmessage = function(e) {
-        var $mesg = document.getElementById("messages");
-        $mesg.innerHTML = e.data + '<br/>' + $mesg.innerHTML;
-        console.log(e.data);
-    };
-
-    function sendMessage(elem){
+    var conn = new ab.Session('ws://localhost:8080',
+        function () {
+            console.info("Connected");
+            conn.subscribe('myuniquetopic', function (topic, data) {
+                // This is where you would add the new article to the DOM (beyond the scope of this tutorial)
+                console.log('New article published to category "' + topic + '" : ', data);
+            });
+        },
+        function () {
+            console.warn('WebSocket connection closed');
+        },
+        {'skipSubprotocolCheck': true}
+    );
+    function sendMessage(elem) {
         conn.send(elem.value);
         elem.value = '';
     }
 </script>
-
 
 </body>
 </html>
